@@ -86,5 +86,9 @@ namespace LaneGame
             Vector3 spawnPos = t.position + offset; //add the offset to the position
             return spawnPos; //return our new position
         }
+
+        public void prints() {
+            Debug.Log("Test");
+        }
     }
 }
