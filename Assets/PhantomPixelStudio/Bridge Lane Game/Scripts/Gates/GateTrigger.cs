@@ -11,7 +11,7 @@ namespace LaneGame.Gates
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Gate signal sent... ");
+                //Debug.Log("Gate signal sent... ");
                 GateTriggered();
             }
         }

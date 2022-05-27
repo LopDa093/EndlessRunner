@@ -19,12 +19,12 @@ namespace LaneGame.Gates
         {
             trigger = GetComponentInChildren<GateTrigger>();
             gateText = GetComponentInChildren<TextMeshProUGUI>();
-
+            gateValue = Random.Range(-6,6);
             if (trigger != null)
                 trigger.GateTriggered += ActivateGate;
             else
             {
-                Debug.LogWarning($"{gate} gate trigger not found!");
+                //Debug.LogWarning($"{gate} gate trigger not found!");
             }
 
             gateText.text = string.Format(gateValue >= 0 ? $"+{gateValue}" : $"{gateValue}");
@@ -32,7 +32,7 @@ namespace LaneGame.Gates
 
         private void ActivateGate()
         {
-            Debug.Log($"{gate} gate activated!");
+            //Debug.Log($"{gate} gate activated!");
             //DestroyGates();                   //you can uncomment this line if you prefer the gates are destroyed after use. I chose not too.
             PlayerUnitManager.UnitManager.HandleUnits(gateValue);
         }
