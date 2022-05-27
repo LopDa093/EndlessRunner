@@ -40,31 +40,34 @@ namespace LaneGame
         }
 
         private void Manage() {
-            Debug.Log("Counter: "+counter + "objects: "+ playerObjectList.Count);
-            
+            //Debug.Log("Counter: "+counter + "objects: "+ playerObjectList.Count);
+            /*
             for (var i = 0; i < playerObjectList.Count; i++) {
                 Debug.Log("Player Value: " + playerObjectList[i].GetComponent<player>().value);
                 counter += playerObjectList[i].GetComponent<player>().value;
-            }
+            }*/
+            int temp = counter;
             Debug.Log("PlayerList :"+ playerObjectList.Count);
             Debug.Log("Counter: "+counter);
             int x, y, z;
-            x = counter / 20;
+            x = temp / 20;
             Debug.Log("X: "+x);
             if (x > 0) {
-                counter = counter - x * 20;
+                temp = temp - x * 20;
             }
             
-            y = counter / 10;
+            y = temp / 10;
             if (y > 0) {
-                counter = counter - y * 10;
+                temp = temp - y * 10;
             }
 
+            z = temp % 10;
+            /*
             if (counter % 10 != 0) {
                 z = counter;
             } else {
                 z = 0;
-            }
+            }*/
 
             //z = counter / 10;
             //Math.DivRem(counter, 10, out z);
@@ -120,7 +123,7 @@ namespace LaneGame
         }
 
         private void AddUnits(float value)
-        {
+        {/*
             for (var i = 0; i < value; i++) //starting from 0, we add a copy of our main unit until we reach our value number
             {
                 //you could inline these variables, I chose not to as I am designing this to be beginner friendly and felt this is easier to read and understand
@@ -132,7 +135,8 @@ namespace LaneGame
                 var objToSpawn = Instantiate(playerClone, spawnPos, rotation, parentObj);
                 playerObjectList.Add(objToSpawn); //add our clone to the list
                 playerUnitCount.value++; //increment our unit count
-            }
+            }*/
+            counter += (int)value;
         }
         
         private void RemoveUnits(float value)
