@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Ice01
-  m_Shader: {fileID: 4800000, guid: 78b89bb38f2f78f4a8b6a9225c9b77bb, type: 3}
+  m_Shader: {fileID: 4800000, guid: 481ed265bb4cace4fb1dccd393e89f24, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -63,7 +63,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionIntensity: 0
-    - _FlashTimes: 0
+    - _FlashTimes: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
