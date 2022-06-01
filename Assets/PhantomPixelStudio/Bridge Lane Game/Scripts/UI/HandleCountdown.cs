@@ -19,7 +19,7 @@ namespace LaneGame
             if (countdownStartValue < 0)
             {
                 //We can now start moving!
-                countdownUI.SetActive(false);
+                //countdownUI.SetActive(false);
                 StartGame();
             }
         }

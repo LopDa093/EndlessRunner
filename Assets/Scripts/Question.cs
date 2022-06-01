@@ -32,7 +32,9 @@ public class Question : MonoBehaviour
         return text;
     }
 
-
+    public bool submit() {
+        return false;
+    }
 
     /*
     void Start()

@@ -18,7 +18,7 @@ public class TFQuestion : Question
 
     }
 
-    public bool submit() {
+    public new bool submit() {
         bool temp;
         if (current == true && (answer[0].Contains("true") || answer[0].Contains("t"))) {
             temp = true;
@@ -27,6 +27,7 @@ public class TFQuestion : Question
         } else {
             temp = false;
         }
+        Time.timeScale = 1f;
         return temp;
     }
 

@@ -34,15 +34,22 @@ namespace SDK {
             string[] text = textFile.Split('}');
             for (int i = 0; i < text.Length; i++) {
                 if (checkType(text[i]) == "Checkbox") {
-                    string[] temp ;
-                    questions[i] = new MultiQuestion();
-                }
-                else if (checkType(text[i]) == "Textbox") {
-                    questions[i] = new ShortQuestion();
+                    string[] temp;
+                    temp = multi1(text[i]);
+                    questions[i] = new MultiQuestion(temp[0], temp[1], temp[2]);
+                } else if (checkType(text[i]) == "Textbox") {
+                    string[] temp;
+                    temp = Textbox(text[i]);
+                    string[] cook = new string[temp.Length - 2];
+                    for (int j = 0; j < temp.Length-2; j++) {
+                        cook[j] = temp[j+2];
+                    }
+                    questions[i] = new ShortQuestion(temp[0], temp[1], cook);
                 } else if (checkType(text[i]) == "TrueFalse") {
-                    questions[i] = new TFQuestion();
-                }
-                else {
+                    string[] temp;
+                    temp = TF(text[i]);
+                    questions[i] = new TFQuestion(temp[0], temp[1], temp[2]);
+                } else {
                     questions[i] = new Question();
                 }
             }
@@ -102,6 +109,19 @@ namespace SDK {
 
         public static string[] TF(string text) {
             string[] spearator = { "::", "{"};
+
+            string[] strlist = text.Split(spearator, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string s in strlist) {
+                Console.WriteLine(s);
+                //Debug.Log(s);
+            }
+
+            return strlist;
+        }
+
+        public static string[] Textbox(string text) {
+            string[] spearator = { "::", "="};
 
             string[] strlist = text.Split(spearator, StringSplitOptions.RemoveEmptyEntries);
 
