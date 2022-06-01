@@ -9,7 +9,7 @@ public class LevelGen : MonoBehaviour
     public int zPos = 50;
     public bool creatingSection = false;
     public int secNum;
-    public int sec = 3;
+    public int sec = 4;
     void Update()
     {
         if (creatingSection == false) {
@@ -19,12 +19,12 @@ public class LevelGen : MonoBehaviour
     }
 
     IEnumerator GenerateSection() {
-        secNum = Random.Range(0,3);
+        secNum = Random.Range(0,4);
         var o = Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
         objects.Add(o);
         zPos += 40;
         //Debug.Log(objects.Count);
-        if (objects.Count > 8) {
+        if (objects.Count > 3) {
             Destroy(objects[0].gameObject);
             objects.RemoveAt(0);
         }
@@ -34,8 +34,8 @@ public class LevelGen : MonoBehaviour
                 objects.RemoveAt(0);
             }
         }
-        if (objects.Count < 8) {
-            sec = 3;
+        if (objects.Count < 4) {
+            sec = 4;
         } else {
             sec = 8;
         }
