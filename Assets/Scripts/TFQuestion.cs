@@ -31,7 +31,7 @@ public class TFQuestion : Question
     }
 
     public void Display() {
-        UI.GetComponentsInChildren<TextMeshPro>().;
+        //UI.GetComponentsInChildren<TextMeshPro>();
     }
 
     // Start is called before the first frame update
