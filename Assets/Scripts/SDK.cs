@@ -34,6 +34,7 @@ namespace SDK {
             string[] text = textFile.Split('}');
             for (int i = 0; i < text.Length; i++) {
                 if (checkType(text[i]) == "Checkbox") {
+                    string[] temp ;
                     questions[i] = new MultiQuestion();
                 }
                 else if (checkType(text[i]) == "Textbox") {
@@ -135,7 +136,6 @@ namespace SDK {
                 Console.WriteLine(s);
                 Debug.Log(s);
             }
-
             return strlist;
         }
 
