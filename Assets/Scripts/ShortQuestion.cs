@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShortQuestion : Question
 {
+    public string[] answers;
     public ShortQuestion() {
 
     }
@@ -12,7 +13,7 @@ public class ShortQuestion : Question
         this.title = title;
         text = question;
         for (int i = 0; i < options.Length; i++) {
-            answer[i] = options[i];
+            answers[i] = options[i];
         }
     }
 

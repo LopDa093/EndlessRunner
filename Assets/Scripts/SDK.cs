@@ -1,24 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SDK {
-    class SDK : MonoBehaviour{
+    public class SDK : MonoBehaviour{
 
         //static readonly string rootFolder = @"C:\Users\Dany\Desktop";   
         //Default file. MAKE SURE TO CHANGE THIS LOCATION AND FILE PATH TO YOUR FILE   
         static readonly string textFile = @"C:\Users\Dany\Desktop\GIFT.txt";
-        Question[] questions;
-
+        public Question[] questions;
+        
+        public SDK() {
+            questions = new Question[3];
+            for (int i = 0; i < questions.Length; i++) {
+                questions[i] = new Question();
+            }
+            SplitTextToQuestions();
+        }
+        
         public void Start() {
             
         }
 
+        public Question randomQuestion() {
+            int x = Random.Range( 0 , questions.Length );
+            return questions[x];
+        }
+
         public string checkType(string text) {
+            
             if (text.Contains("=") && text.Contains("~")) {
                 return "Checkbox";
             } else if (text.Contains("{T}") || text.Contains("{TRUE}") || text.Contains("{F}") || text.Contains("{FALSE}")) {
@@ -29,9 +45,13 @@ namespace SDK {
                 return "";
             }
         }
-
+        /*
+        public Question returnQuestion() {
+            
+        }
+        */
         public void SplitTextToQuestions() {
-            string[] text = textFile.Split('}');
+            string[] text = Read().Split('}');
             for (int i = 0; i < text.Length; i++) {
                 if (checkType(text[i]) == "Checkbox") {
                     string[] temp;
@@ -69,8 +89,8 @@ namespace SDK {
                 string[] lines = File.ReadAllLines(textFile);
                 foreach (string line in lines)
                     Console.WriteLine(line);
-            }*/
-            /*
+            }
+            
             if (File.Exists(textFile)) {
                 // Read file using StreamReader. Reads file line by line  
                 using (StreamReader file = new StreamReader(textFile)) {
@@ -85,7 +105,8 @@ namespace SDK {
                     file.Close();
                     Console.WriteLine("File has {counter} lines.");
                 }
-            }*/
+            }
+            */
             Console.ReadKey();
             return "";
             
@@ -151,11 +172,13 @@ namespace SDK {
             string[] spearator = { "::", "=", "~" };
 
             string[] strlist = text.Split(spearator, StringSplitOptions.RemoveEmptyEntries);
-
+            /*
             foreach (string s in strlist) {
                 Console.WriteLine(s);
                 Debug.Log(s);
             }
+            */
+            //strlist[strlist.Length] = answer;
             return strlist;
         }
 

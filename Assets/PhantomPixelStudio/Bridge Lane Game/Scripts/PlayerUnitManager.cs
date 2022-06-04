@@ -47,11 +47,11 @@ namespace LaneGame
                 counter += playerObjectList[i].GetComponent<player>().value;
             }*/
             int temp = counter;
-            Debug.Log("PlayerList :"+ playerObjectList.Count);
-            Debug.Log("Counter: "+counter);
+            //Debug.Log("PlayerList :"+ playerObjectList.Count);
+            //Debug.Log("Counter: "+counter);
             int x, y, z;
             x = temp / 20;
-            Debug.Log("X: "+x);
+            //Debug.Log("X: "+x);
             if (x > 0) {
                 temp = temp - x * 20;
             }
@@ -71,7 +71,7 @@ namespace LaneGame
 
             //z = counter / 10;
             //Math.DivRem(counter, 10, out z);
-            Debug.Log(x +" ; " + y + " ; " + z);
+            //Debug.Log(x +" ; " + y + " ; " + z);
             //DELETE
             for (var i = playerObjectList.Count; i > 0; i--) {
                 var obj = playerObjectList[i-1];                      //we save a variable of the object we chose so we can still access it after we remove it from the list
@@ -79,7 +79,7 @@ namespace LaneGame
                 Destroy(obj);                                           //then using our saved variable, we destroy it
                 playerUnitCount.value--;                                //subtract from our unit count
             }
-            Debug.Log("PlayerList After Delete:" + playerObjectList.Count);
+            //Debug.Log("PlayerList After Delete:" + playerObjectList.Count);
             //ADD LARGE
             for (var i = 0; i < x; i++) //starting from 0, we add a copy of our main unit until we reach our value number
             {

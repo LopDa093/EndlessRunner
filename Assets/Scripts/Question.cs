@@ -7,9 +7,10 @@ public class Question : MonoBehaviour
 
     public string title;
     public string text;
-    public string[] answer;
+    public string answer;
+    public string[] options;
     public int index = 0;
-    public GameObject UI;
+    public UI_Handler gameUI;
 
     public Question() {
 
@@ -19,7 +20,7 @@ public class Question : MonoBehaviour
         title = Title;
         text = Text;
         for (int i = 0; i < Answer.Length; i++) {
-            answer[i] = Answer[i];
+            //answer[i] = Answer[i];
         }
         index = ans;
     }

@@ -10,7 +10,8 @@ public class MultiQuestion : Question
     public MultiQuestion(string title, string question, string answer) {
         this.title = title;
         text = question;
-        this.answer[0] = answer;
+        this.answer = answer;
+        
     }
 
     public MultiQuestion() {

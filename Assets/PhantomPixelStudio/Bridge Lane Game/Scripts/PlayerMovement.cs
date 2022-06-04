@@ -13,6 +13,7 @@ namespace LaneGame
         private Rigidbody rb;
         private PlayerControls controls;
         private bool canStart = false;
+        public UI_Handler ui;
         private void Awake()
         {
             controls = new PlayerControls(); //this can be replaced with your own control scheme
@@ -36,6 +37,10 @@ namespace LaneGame
             {
                 HandleLateralMovement();
                 HandleForwardMovement();
+            }
+            if (Input.GetKeyDown(KeyCode.V)) {
+                Debug.Log("pressed Key");
+                //ui.Checkbox.SetActive(true);
             }
         }
 

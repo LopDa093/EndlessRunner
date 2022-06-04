@@ -7,7 +7,7 @@ namespace LaneGame.Gates
     {
         public event UnityAction GateTriggered = delegate { };
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {

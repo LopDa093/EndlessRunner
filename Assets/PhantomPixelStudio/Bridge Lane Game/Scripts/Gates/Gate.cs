@@ -6,11 +6,12 @@ namespace LaneGame.Gates
     public enum GateSide
     {
         Left,
-        Right
+        Right,
+        Question
     }
     public abstract class Gate : MonoBehaviour
     {
-        public float gateValue;
+        public float gateValue=0;
         public GateSide gate;
         private GateTrigger trigger;
         private TextMeshProUGUI gateText;
@@ -32,7 +33,8 @@ namespace LaneGame.Gates
 
         private void ActivateGate()
         {
-            //Debug.Log($"{gate} gate activated!");
+            Debug.Log($"{gate} gate activated!");
+
             //DestroyGates();                   //you can uncomment this line if you prefer the gates are destroyed after use. I chose not too.
             PlayerUnitManager.UnitManager.HandleUnits(gateValue);
         }

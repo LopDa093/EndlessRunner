@@ -6,6 +6,7 @@ public class player : MonoBehaviour
 {
     public int value = 1;
     public int type = 1;
+    UI_Handler ui;
 
     public void changeType(int change) {
         if (change == 0) {
