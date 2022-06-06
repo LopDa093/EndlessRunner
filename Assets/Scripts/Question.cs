@@ -13,7 +13,12 @@ public class Question : MonoBehaviour
     public UI_Handler gameUI;
 
     public Question() {
+        
+    }
 
+    public static Question CreateComponent(GameObject where) {
+        Question myC = where.AddComponent<Question>();
+        return myC;
     }
 
     public Question(string Title, string Text, string[] Answer, int ans) {
@@ -23,6 +28,10 @@ public class Question : MonoBehaviour
             //answer[i] = Answer[i];
         }
         index = ans;
+    }
+
+    public void ChangeUI() {
+        GameObject.Find("Checkbox").SetActive(true);
     }
 
     string getTitle() {
@@ -36,17 +45,4 @@ public class Question : MonoBehaviour
     public bool submit() {
         return false;
     }
-
-    /*
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    */
 }

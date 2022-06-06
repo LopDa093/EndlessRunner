@@ -11,7 +11,18 @@ public class MultiQuestion : Question
         this.title = title;
         text = question;
         this.answer = answer;
-        
+    }
+
+    public static MultiQuestion CreateComponent(GameObject where, string parameter, string question, string answer) {
+        MultiQuestion myC = where.AddComponent<MultiQuestion>();
+        myC.title = parameter;
+        myC.text = question;
+        myC.answer = answer;
+        return myC;
+    }
+
+    public void ChangeUI() {
+
     }
 
     public MultiQuestion() {

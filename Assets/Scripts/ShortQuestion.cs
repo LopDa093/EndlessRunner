@@ -17,6 +17,17 @@ public class ShortQuestion : Question
         }
     }
 
+    public static ShortQuestion CreateComponent(GameObject where, string parameter, string question, string[] answer) {
+        ShortQuestion myC = where.AddComponent<ShortQuestion>();
+        myC.title = parameter;
+        myC.text = question;
+        //myC.answer = answer;
+        for (int i = 0; i < answer.Length; i++) {
+            myC.answers[i] = answer[i];
+        }
+        return myC;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -14,6 +14,14 @@ public class TFQuestion : Question
         
     }
 
+    public static TFQuestion CreateComponent(GameObject where, string parameter, string question, string answer) {
+        TFQuestion myC = where.AddComponent<TFQuestion>();
+        myC.title = parameter;
+        myC.text = question;
+        myC.answer = answer;
+        return myC;
+    }
+
     public TFQuestion() {
 
     }

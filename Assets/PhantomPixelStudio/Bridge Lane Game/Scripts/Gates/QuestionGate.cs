@@ -11,17 +11,24 @@ namespace LaneGame.Gates
         private GateTrigger trigger;
         public UI_Handler handler;
         //public Canvas UI;
+        //public SDK.SDK sdk = new SDK.SDK();
         public SDK.SDK sdk;
-        public Question question = new Question();
+        public Question question;
         //private TextMeshProUGUI gateText;
 
         private void Start() {
+            handler = gameObject.AddComponent<UI_Handler>();
+            question = gameObject.AddComponent<Question>();
+            sdk = gameObject.GetComponent<SDK.SDK>();
             trigger = GetComponentInChildren<GateTrigger>();
-            sdk = new SDK.SDK();
-            sdk.SplitTextToQuestions();
+            Debug.Log(handler);
+            //question = new Question();
+            //sdk = new SDK.SDK();
+            //sdk.SplitTextToQuestions();
             question = sdk.randomQuestion();
-            string name = question.gameObject.name;
-            Debug.Log(name);
+            //Debug.Log(question);
+            //string name = question.gameObject.name;
+            //Debug.Log(name);
             //Debug.Log(UI);
             //gateText = GetComponentInChildren<TextMeshProUGUI>();
             //gateValue = Random.Range(-6, 6);
@@ -59,7 +66,8 @@ namespace LaneGame.Gates
             question = GameObject.Find("TrueFalse");
             question.SetActive(true);
             */
-            handler.UI.enabled = true;
+            question.ChangeUI();
+            //handler.UI.enabled = true;
             //handler.TrueFalse.SetActive(true);
             Time.timeScale = 0f;
             

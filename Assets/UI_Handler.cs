@@ -12,19 +12,32 @@ public class UI_Handler : MonoBehaviour
     public Canvas UI;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        Checkbox = new GameObject[5];
+        TrueFalse = new GameObject[5];
+        TextBox = new GameObject[5];
+        Dropdown = new GameObject[5];
         /*
+        for (int i = 0; i < 5; i++) {
+            Checkbox[i] = new GameObject();
+            TrueFalse[i] = new GameObject();
+            TextBox[i] = new GameObject();
+            Dropdown[i] = new GameObject();
+        }
+        */
+        //UI = GetComponent<Canvas>();
+
         Checkbox[0] = GameObject.Find("Checkbox");
         TrueFalse[0] = GameObject.Find("TrueFalse");
         TextBox[0] = GameObject.Find("Textbox");
         Dropdown[0] = GameObject.Find("Dropdown");
-
+        
         Checkbox[1] = GameObject.Find("Checkbox/Fields/InformationField/Text-Question (TMP)");
         TrueFalse[1] = GameObject.Find("TrueFalse/Fields/InformationField/Text-Question (TMP)");
         TextBox[1] = GameObject.Find("Textbox/Fields/InformationField/Text-Question (TMP)");
         Dropdown[1] = GameObject.Find("Dropdown/Fields/InformationField/Text-Question (TMP)");
-
+        
         Checkbox[2] = GameObject.Find("Checkbox/Fields/InformationField/Text-Ex (TMP)");
         TrueFalse[2] = GameObject.Find("TrueFalse/Fields/InformationField/Text-Ex (TMP)");
         TextBox[2] = GameObject.Find("Textbox/Fields/InformationField/Text-Ex (TMP)");
@@ -36,12 +49,12 @@ public class UI_Handler : MonoBehaviour
         Dropdown[3] = GameObject.Find("Dropdown/Fields/Btn_Submit");
         
         
-        UI.enabled = false;
+        /*
         Checkbox[0].SetActive(false);
         TrueFalse[0].SetActive(false);
         TextBox[0].SetActive(false);
-        Dropdown[0].SetActive(false);
-        */
+        Dropdown[0].SetActive(false);*/
+        //UI.enabled = false;
     }
 
     public static GameObject[] checkbox() {
