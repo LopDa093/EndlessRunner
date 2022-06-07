@@ -21,11 +21,12 @@ namespace LaneGame.Gates
             question = gameObject.AddComponent<Question>();
             sdk = gameObject.GetComponent<SDK.SDK>();
             trigger = GetComponentInChildren<GateTrigger>();
-            Debug.Log(handler);
+            //Debug.Log(handler);
             //question = new Question();
             //sdk = new SDK.SDK();
             //sdk.SplitTextToQuestions();
             question = sdk.randomQuestion();
+            //Debug.Log(question);
             //Debug.Log(question);
             //string name = question.gameObject.name;
             //Debug.Log(name);
@@ -59,19 +60,36 @@ namespace LaneGame.Gates
         }
         */
         private void ActivateGate() {
-            Debug.Log($"{gate} gate activated!");
+            //Debug.Log($"{gate} gate activated!");
             //DestroyGates();                   //you can uncomment this line if you prefer the gates are destroyed after use. I chose not too.
             /*
             GameObject.Find("UI").SetActive(true);
             question = GameObject.Find("TrueFalse");
             question.SetActive(true);
             */
-            question.ChangeUI();
+            //Debug.Log(question.name);
+            bool temp = false;
+            string correct = "";
+            while (temp == false) {
+                correct = question.ChangeUI(handler.Checkbox[0], question.name, question.title, question.text, question.options);
+                
+                if (correct != "") {
+                    temp = true;
+                }
+            }
             //handler.UI.enabled = true;
             //handler.TrueFalse.SetActive(true);
-            Time.timeScale = 0f;
             
-            PlayerUnitManager.UnitManager.HandleUnits(gateValue);
+            if (correct == "correct") {
+                PlayerUnitManager.UnitManager.HandleUnits(13);
+            }
+            else if(correct == "false") {
+                PlayerUnitManager.UnitManager.HandleUnits(0);
+            }
+            else {
+
+            }
+            
         }
 
         private void OnTriggerExit(Collider other) {

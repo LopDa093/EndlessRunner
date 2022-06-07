@@ -14,7 +14,7 @@ public class UI_Handler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Checkbox = new GameObject[5];
+        Checkbox = new GameObject[15];
         TrueFalse = new GameObject[5];
         TextBox = new GameObject[5];
         Dropdown = new GameObject[5];
@@ -47,8 +47,16 @@ public class UI_Handler : MonoBehaviour
         TrueFalse[3] = GameObject.Find("TrueFalse/Fields/Btn_Submit");
         TextBox[3] = GameObject.Find("Textbox/Fields/Btn_Submit");
         Dropdown[3] = GameObject.Find("Dropdown/Fields/Btn_Submit");
-        
-        
+
+        Checkbox[4] = GameObject.Find("Checkbox/Fields/GameObject/Answer A/Label");
+        Checkbox[5] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (1)/Label");
+        Checkbox[6] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (2)/Label");
+        Checkbox[7] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (3)/Label");
+
+        Checkbox[8] = GameObject.Find("Checkbox/Fields/GameObject/Answer A");
+        Checkbox[9] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (1)");
+        Checkbox[10] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (2)");
+        Checkbox[11] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (3)");
         /*
         Checkbox[0].SetActive(false);
         TrueFalse[0].SetActive(false);
