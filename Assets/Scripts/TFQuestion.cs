@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TFQuestion : Question
-{
+public class TFQuestion : Question {
     public bool current;
 
     public TFQuestion(string title, string question, string answer) {
         this.title = title;
         text = question;
-        this.answer = answer;
-        
+        this.answer[0] = answer;
+
     }
 
-    public static TFQuestion CreateComponent(GameObject where, string parameter, string question, string answer) {
+    public static TFQuestion CreateComponent(GameObject where, string parameter, string question, string answer, string name) {
         TFQuestion myC = where.AddComponent<TFQuestion>();
+        myC.name = name;
         myC.title = parameter;
         myC.text = question;
-        myC.answer = answer;
+        myC.answer[0] = answer;
         return myC;
     }
 
@@ -27,16 +27,18 @@ public class TFQuestion : Question
     }
 
     public void ChangeUI() {
-        
+
     }
 
     public new bool submit() {
         bool temp;
-        if (current == true && (answer.Contains("true") || answer.Contains("t"))) {
+        if (current == true && (answer[0].Contains("true") || answer[0].Contains("t"))) {
             temp = true;
-        } else if (current == false && (answer.Contains("false") || answer.Contains("f"))) {
+        }
+        else if (current == false && (answer[0].Contains("false") || answer[0].Contains("f"))) {
             temp = true;
-        } else {
+        }
+        else {
             temp = false;
         }
         Time.timeScale = 1f;
@@ -48,14 +50,12 @@ public class TFQuestion : Question
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }

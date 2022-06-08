@@ -28,7 +28,7 @@ namespace SDK {
 
         public Question randomQuestion() {
             int x = Random.Range( 0 , 4 );
-            return questions[x];
+            return questions[0];
         }
 
         public string checkType(string text) {
@@ -38,7 +38,7 @@ namespace SDK {
             } else if (text.Contains("{T}") || text.Contains("{TRUE}") || text.Contains("{F}") || text.Contains("{FALSE}")) {
                 return "TrueFalse";
             } else if (text.Contains("=") && !text.Contains("~")) {
-                return "Textbox";
+                return "TextBox";
             } else {
                 return "";
             }
@@ -48,22 +48,26 @@ namespace SDK {
             
         }
         */
+        
         public void SplitTextToQuestions() {
             string[] text = Read().Split('}', StringSplitOptions.RemoveEmptyEntries);
-            /*for (int i = 0; i < text.Length; i++) {
+            for (int i = 0; i < text.Length; i++) {
                 text[i].Trim();
-                Debug.Log(text[i]);
-            }*/
+                //Debug.Log(text[i]);
+            }
             for (int i = 0; i < text.Length; i++) {
                 if (checkType(text[i]) == "Checkbox") {
                     string[] temp;
                     temp = multi1(text[i]);
+                    for (int j = 0; j < temp.Length; j++) {
+                        //Debug.Log(temp[j]);
+                    }
                     //gameObject.AddComponent<MultiQuestion>();
                     //questions[i] = Instantiate<MultiQuestion>();
-                    MultiQuestion myC = MultiQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[2]);
+                    MultiQuestion myC = MultiQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[2], "Checkbox", temp);
                     questions[i] = myC;
                 }
-                else if (checkType(text[i]) == "Textbox") {
+                else if (checkType(text[i]) == "TextBox") {
                     string[] temp;
                     temp = Textbox(text[i]);
                     string[] cook = new string[temp.Length - 2];
@@ -71,15 +75,15 @@ namespace SDK {
                         cook[j] = temp[j + 2];
                     }
                     //questions[i] = new ShortQuestion(temp[0], temp[1], cook);
-                    
-                    ShortQuestion myC = ShortQuestion.CreateComponent(gameObj, temp[0], temp[1], cook);
+
+                    ShortQuestion myC = ShortQuestion.CreateComponent(gameObj, temp[0], temp[1], cook, "TextBox");
                     questions[i] = myC;
                 }
                 else if (checkType(text[i]) == "TrueFalse") {
                     string[] temp;
                     temp = TF(text[i]);
-                    
-                    TFQuestion myC = TFQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[2]);
+
+                    TFQuestion myC = TFQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[2], "TrueFalse");
                     questions[i] = myC;
                     //questions[i] = new TFQuestion(temp[0], temp[1], temp[2]);
                 }
@@ -88,7 +92,7 @@ namespace SDK {
                 }
             }
         }
-
+        
         public static string Read() {
             
             if (File.Exists(textFile)) {
