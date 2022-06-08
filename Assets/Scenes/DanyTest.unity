@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1642945665, guid: a3cfd0a063f0ace4da44ff63a92ce373, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000034332275
+      value: 0.00006866455
       objectReference: {fileID: 0}
     - target: {fileID: 2042399087, guid: a3cfd0a063f0ace4da44ff63a92ce373, type: 3}
       propertyPath: m_AnchorMax.x
@@ -837,6 +837,7 @@ MonoBehaviour:
   countdownStartValue: 2
   countdownText: {fileID: 1737956829}
   countdownUI: {fileID: 751592828}
+  ui: {fileID: 0}
 --- !u!4 &751592830
 Transform:
   m_ObjectHideFlags: 0

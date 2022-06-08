@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShortQuestion : Question
-{
-    public string[] answers;
+public class ShortQuestion : Question {
+    //public string[] answers;
     public ShortQuestion() {
 
     }
@@ -13,30 +12,30 @@ public class ShortQuestion : Question
         this.title = title;
         text = question;
         for (int i = 0; i < options.Length; i++) {
-            answers[i] = options[i];
+            answer[i] = options[i];
         }
     }
 
-    public static ShortQuestion CreateComponent(GameObject where, string parameter, string question, string[] answer) {
+    public static ShortQuestion CreateComponent(GameObject where, string parameter, string question, string[] answers, string name) {
         ShortQuestion myC = where.AddComponent<ShortQuestion>();
+        myC.name = name;
         myC.title = parameter;
         myC.text = question;
+        //myC.answer[0] = "";
         //myC.answer = answer;
-        for (int i = 0; i < answer.Length; i++) {
-            myC.answers[i] = answer[i];
-        }
+        myC.answer[0] = answers[0];
+        myC.answer[1] = answers[1];
+        myC.answer[2] = answers[2];
         return myC;
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }

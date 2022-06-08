@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using SDK;
+using System.Collections;
+
 namespace LaneGame.Gates
 {
     public class QuestionGate : MonoBehaviour
@@ -14,6 +16,9 @@ namespace LaneGame.Gates
         //public SDK.SDK sdk = new SDK.SDK();
         public SDK.SDK sdk;
         public Question question;
+        private string correct = "";
+        private bool collided = false;
+        private bool executed = false;
         //private TextMeshProUGUI gateText;
 
         private void Start() {
@@ -21,11 +26,12 @@ namespace LaneGame.Gates
             question = gameObject.AddComponent<Question>();
             sdk = gameObject.GetComponent<SDK.SDK>();
             trigger = GetComponentInChildren<GateTrigger>();
-            Debug.Log(handler);
+            //Debug.Log(handler);
             //question = new Question();
             //sdk = new SDK.SDK();
             //sdk.SplitTextToQuestions();
             question = sdk.randomQuestion();
+            //Debug.Log(question);
             //Debug.Log(question);
             //string name = question.gameObject.name;
             //Debug.Log(name);
@@ -59,25 +65,26 @@ namespace LaneGame.Gates
         }
         */
         private void ActivateGate() {
-            Debug.Log($"{gate} gate activated!");
+            //Debug.Log($"{gate} gate activated!");
             //DestroyGates();                   //you can uncomment this line if you prefer the gates are destroyed after use. I chose not too.
             /*
             GameObject.Find("UI").SetActive(true);
             question = GameObject.Find("TrueFalse");
             question.SetActive(true);
             */
-            question.ChangeUI();
+            //Debug.Log(question.name);
+            collided = true;
+            //correct = question.ChangeUI(handler.Checkbox[0], question.name, question.title, question.text, question.options);
+
             //handler.UI.enabled = true;
             //handler.TrueFalse.SetActive(true);
-            Time.timeScale = 0f;
+
             
-            PlayerUnitManager.UnitManager.HandleUnits(gateValue);
+
         }
 
         private void OnTriggerExit(Collider other) {
-            handler.UI.enabled = false;
-            
-            Time.timeScale = 1f;
+            StopCoroutine(Fade());
         }
 
         private void DestroyGates() {
@@ -85,11 +92,36 @@ namespace LaneGame.Gates
         }
 
 
-        
+        private void Update() {
+            if (collided == true && executed == false) {
+                StartCoroutine(Fade());
+            }
+            if (collided == true && executed == false) {
+                if (correct == "correct") {
+                    Debug.Log("it is correct");
+                    Time.timeScale = 1f;
+                    PlayerUnitManager.UnitManager.HandleUnits(13);
+                    StopCoroutine(Fade());
+                    executed = true;
+                } else if (correct == "false") {
+                    Debug.Log("it is incorrect");
+                    Time.timeScale = 1f;
+                    PlayerUnitManager.UnitManager.HandleUnits(0);
+                    StopCoroutine(Fade());
+                    executed = true;
+                } else {
 
+                }
+            }
+            
+        }
 
+        IEnumerator Fade() {
+            correct = question.ChangeUI(question.name, question.title, question.text, question.options);
+            yield return new WaitForSeconds(5);
+        }
 
         //intentionally left blank
-        
+
     }
 }
