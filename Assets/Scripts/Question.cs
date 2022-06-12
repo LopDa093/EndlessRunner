@@ -15,11 +15,13 @@ public class Question : MonoBehaviour {
     public string correct = "";
     public bool executed = false;
     bool action = false;
+    private GameObject checkboxs;
 
     private void Awake() {
         answer = new string[5];
         options = new string[5];
         gameUI = gameObject.AddComponent<UI_Handler>();
+        checkboxs = GameObject.Find("Checkbox");
     }
 
     public Question() {
@@ -50,38 +52,47 @@ public class Question : MonoBehaviour {
             correct = "correct";
             action = true;
             executed = true;
-            gameUI.Checkbox[0].SetActive(false);
+            checkboxs.SetActive(false);
             Time.timeScale = 1f;
         }
         else {
             correct = "false";
             action = true;
             executed = true;
-            gameUI.Checkbox[0].SetActive(false);
+            checkboxs.SetActive(false);
             Time.timeScale = 1f;
         }
     }
 
-    void ToggleValueChanged1(Toggle t) {
+    void CheckboxChanged1(Toggle t) {
         ansIndex = 0;
     }
 
-    void ToggleValueChanged2(Toggle t) {
+    void CheckboxChanged2(Toggle t) {
         ansIndex = 1;
     }
 
-    void ToggleValueChanged3(Toggle t) {
+    void CheckboxChanged3(Toggle t) {
         ansIndex = 2;
     }
 
-    void ToggleValueChanged4(Toggle t) {
+    void CheckboxChanged4(Toggle t) {
         ansIndex = 3;
     }
+
+    void TrueFalseChanged1(Toggle t) {
+        ansIndex = 0;
+    }
+
+    void TrueFalseChanged2(Toggle t) {
+        ansIndex = 1;
+    }
+
 
     public string ChangeUI(string name, string title, string text, string[] temp) {
         Time.timeScale = 0f;
         if (name == "Checkbox") {
-            gameUI.Checkbox[0].SetActive(true);
+            checkboxs.SetActive(true);
             gameUI.Checkbox[1].GetComponent<TMPro.TextMeshProUGUI>().text = title;
             gameUI.Checkbox[2].GetComponent<TMPro.TextMeshProUGUI>().text = text;
             gameUI.Checkbox[4].GetComponent<TMPro.TextMeshProUGUI>().text = temp[0];
@@ -91,19 +102,19 @@ public class Question : MonoBehaviour {
             gameUI.Checkbox[3].GetComponent<Button>().onClick.AddListener(TaskOnClick);
 
             gameUI.Checkbox[8].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
-                ToggleValueChanged1(gameUI.Checkbox[8].GetComponent<Toggle>());
+                CheckboxChanged1(gameUI.Checkbox[8].GetComponent<Toggle>());
             });
 
             gameUI.Checkbox[9].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
-                ToggleValueChanged2(gameUI.Checkbox[9].GetComponent<Toggle>());
+                CheckboxChanged2(gameUI.Checkbox[9].GetComponent<Toggle>());
             });
 
             gameUI.Checkbox[10].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
-                ToggleValueChanged3(gameUI.Checkbox[10].GetComponent<Toggle>());
+                CheckboxChanged3(gameUI.Checkbox[10].GetComponent<Toggle>());
             });
 
             gameUI.Checkbox[11].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
-                ToggleValueChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
+                CheckboxChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
             });
 
                 return correct;
@@ -117,28 +128,30 @@ public class Question : MonoBehaviour {
             }*/
 
 
-        }
-        else {
-            
-            return "";
-        }
-        /*
-        else if (name == "TrueFalse") {
+        } else if (name == "TrueFalse") {
             gameUI.TrueFalse[0].SetActive(true);
             gameUI.TrueFalse[1].GetComponent<TMPro.TextMeshProUGUI>().text = title;
             gameUI.TrueFalse[2].GetComponent<TMPro.TextMeshProUGUI>().text = text;
             gameUI.TrueFalse[3].GetComponent<Button>().onClick.AddListener(TaskOnClick);
+            
+            gameUI.TrueFalse[4].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
+                CheckboxChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
+            });
+            gameUI.TrueFalse[5].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
+                CheckboxChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
+            });
+
             if (executed == true) {
                 return correct;
             }
             else {
-                ChangeUI(obj, name, title, text, temp);
+                //ChangeUI(obj, name, title, text, temp);
             }
             return "";
         }
         else {
             return "";
-        }*/
+        }
         /*
         else if (name == "Dropdown") {
             gameUI.Dropdown[0].SetActive(true);

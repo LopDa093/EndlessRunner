@@ -106,7 +106,7 @@ namespace LaneGame.Gates
                 } else if (correct == "false") {
                     Debug.Log("it is incorrect");
                     Time.timeScale = 1f;
-                    PlayerUnitManager.UnitManager.HandleUnits(0);
+                    PlayerUnitManager.UnitManager.HandleUnits(-10);
                     StopCoroutine(Fade());
                     executed = true;
                 } else {

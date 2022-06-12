@@ -13,7 +13,7 @@ public class UI_Handler : MonoBehaviour {
     // Start is called before the first frame update
     void Awake() {
         Checkbox = new GameObject[15];
-        TrueFalse = new GameObject[5];
+        TrueFalse = new GameObject[15];
         TextBox = new GameObject[5];
         Dropdown = new GameObject[5];
         /*
@@ -55,6 +55,9 @@ public class UI_Handler : MonoBehaviour {
         Checkbox[9] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (1)");
         Checkbox[10] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (2)");
         Checkbox[11] = GameObject.Find("Checkbox/Fields/GameObject/Answer A (3)");
+
+        TrueFalse[4] = GameObject.Find("TrueFalse/Fields/GameObject/GameObject/True");
+        TrueFalse[5] = GameObject.Find("TrueFalse/Fields/GameObject/GameObject/False");
         /*
         Checkbox[0].SetActive(false);
         TrueFalse[0].SetActive(false);

@@ -28,7 +28,7 @@ namespace SDK {
 
         public Question randomQuestion() {
             int x = Random.Range( 0 , 4 );
-            return questions[0];
+            return questions[1];
         }
 
         public string checkType(string text) {
