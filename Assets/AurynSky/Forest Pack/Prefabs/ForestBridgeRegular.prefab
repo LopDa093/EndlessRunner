@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4406857631982146}
   - component: {fileID: 33149313563724880}
   - component: {fileID: 23654015844079804}
+  - component: {fileID: 6875224098620862053}
+  - component: {fileID: 7329754455062084654}
   m_Layer: 0
   m_Name: ForestBridgeRegular
   m_TagString: Untagged
@@ -83,3 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6875224098620862053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456910657315934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.8097508, z: 2}
+  m_Center: {x: 0.88, y: 0.23827608, z: 0}
+--- !u!65 &7329754455062084654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456910657315934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.8097508, z: 2}
+  m_Center: {x: -0.88, y: 0.23827608, z: 0}
