@@ -24,7 +24,7 @@ namespace LaneGame.Gates
         private void Start() {
             handler = gameObject.AddComponent<UI_Handler>();
             question = gameObject.AddComponent<Question>();
-            sdk = gameObject.GetComponent<SDK.SDK>();
+            sdk = gameObject.AddComponent<SDK.SDK>();
             trigger = GetComponentInChildren<GateTrigger>();
             //Debug.Log(handler);
             //question = new Question();
@@ -84,6 +84,7 @@ namespace LaneGame.Gates
         }
 
         private void OnTriggerExit(Collider other) {
+            collided = false;
             StopCoroutine(Fade());
         }
 

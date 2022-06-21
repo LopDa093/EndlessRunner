@@ -18,7 +18,8 @@ namespace SDK {
         public GameObject gameObj;
         
         public void Awake() {
-            questions = new Question[5];
+            string[] temp = Read().Split('}', StringSplitOptions.RemoveEmptyEntries);
+            questions = new Question[temp.Length];
             for (int i = 0; i < questions.Length; i++) {
                 questions[i] = gameObject.AddComponent<Question>();
             }
@@ -28,16 +29,26 @@ namespace SDK {
 
         public Question randomQuestion() {
             int x = Random.Range( 0 , 4 );
-            return questions[1];
+            return questions[2];
         }
 
         public string checkType(string text) {
             
             if (text.Contains("=") && text.Contains("~")) {
-                return "Checkbox";
-            } else if (text.Contains("{T}") || text.Contains("{TRUE}") || text.Contains("{F}") || text.Contains("{FALSE}")) {
+                int count1 = text.Split('=').Length - 1;
+                int count = text.Split('~').Length - 1;
+                int total = count + count1;
+                if (total > 4) {
+                    return "Dropdown";
+                }
+                else {
+                    return "Checkbox";
+                }
+            } else if (text.Contains("{T") || text.Contains("{TRUE") || text.Contains("{F") || text.Contains("{FALSE")) {
+                Debug.Log("TrueFalse");
                 return "TrueFalse";
             } else if (text.Contains("=") && !text.Contains("~")) {
+                Debug.Log("TextBox");
                 return "TextBox";
             } else {
                 return "";
@@ -64,7 +75,7 @@ namespace SDK {
                     }
                     //gameObject.AddComponent<MultiQuestion>();
                     //questions[i] = Instantiate<MultiQuestion>();
-                    MultiQuestion myC = MultiQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[2], "Checkbox", temp);
+                    MultiQuestion myC = MultiQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[temp.Length-3], "Checkbox", temp);
                     questions[i] = myC;
                 }
                 else if (checkType(text[i]) == "TextBox") {
@@ -86,6 +97,17 @@ namespace SDK {
                     TFQuestion myC = TFQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[2], "TrueFalse");
                     questions[i] = myC;
                     //questions[i] = new TFQuestion(temp[0], temp[1], temp[2]);
+                }
+                else if (checkType(text[i]) == "Dropdown") {
+                    string[] temp;
+                    temp = multi1(text[i]);
+                    for (int j = 0; j < temp.Length; j++) {
+                        //Debug.Log(temp[j]);
+                    }
+                    //gameObject.AddComponent<MultiQuestion>();
+                    //questions[i] = Instantiate<MultiQuestion>();
+                    MultiQuestion myC = MultiQuestion.CreateComponent(gameObj, temp[0], temp[1], temp[temp.Length - 3], "Checkbox", temp);
+                    questions[i] = myC;
                 }
                 else {
                     questions[i] = gameObject.AddComponent<Question>();
@@ -133,7 +155,7 @@ namespace SDK {
         public static string getQuestionType(string text) {
             int x = text.IndexOf("{")-1;
             text.Substring(x, text.Length - x);
-            if (text.IndexOf("{true}") > -1 || text.IndexOf("{t}") > -1 || text.IndexOf("{f}") > -1 || text.IndexOf("{false}") > -1) {
+            if (text.IndexOf("{true") > -1 || text.IndexOf("{t") > -1 || text.IndexOf("{f") > -1 || text.IndexOf("{false") > -1) {
                 return "TrueFalse";
             }
 
@@ -190,6 +212,7 @@ namespace SDK {
             string[] spearator = { "::", "=", "~" };
 
             string[] strlist = text.Split(spearator, StringSplitOptions.RemoveEmptyEntries);
+            strlist[strlist.Length] = answer;
             /*
             foreach (string s in strlist) {
                 Console.WriteLine(s);

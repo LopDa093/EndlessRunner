@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,12 +17,19 @@ public class Question : MonoBehaviour {
     public bool executed = false;
     bool action = false;
     private GameObject checkboxs;
+    private GameObject TFS;
+    private GameObject Box;
+    private GameObject Dropdown;
+    string value;
 
     private void Awake() {
         answer = new string[5];
         options = new string[5];
         gameUI = gameObject.AddComponent<UI_Handler>();
         checkboxs = GameObject.Find("Checkbox");
+        TFS = GameObject.Find("TrueFalse");
+        Box = GameObject.Find("Textbox");
+        Dropdown = GameObject.Find("Dropdown");
     }
 
     public Question() {
@@ -48,6 +56,7 @@ public class Question : MonoBehaviour {
     }
 
     void TaskOnClick() {
+        
         if (ansIndex == index) {
             correct = "correct";
             action = true;
@@ -88,6 +97,59 @@ public class Question : MonoBehaviour {
         ansIndex = 1;
     }
 
+   /* void TextBoxChanged(Toggle t) {
+        ansIndex = 1;
+    }*/
+
+    void TaskOnClickTF() {
+        string tempo = ansIndex + "";
+        Debug.LogError("Correct Answer is:"+answer[0]+"Your Answer is:"+ tempo);
+        Debug.LogError(answer[0].Equals(tempo));
+        if (answer[0].Equals(tempo)) {
+            correct = "correct";
+            action = true;
+            executed = true;
+            TFS.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else {
+            correct = "false";
+            action = true;
+            executed = true;
+            TFS.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
+    void TaskOnClickBox() {
+        Debug.Log(value + " + "+ 1);
+        bool isCorrect = false;
+        for (int i = 0; i < answer.Length; i++) {
+            if (value.Equals(answer[i])) {
+                isCorrect = true;
+            }
+        }
+        if (isCorrect) {
+            correct = "correct";
+            action = true;
+            executed = true;
+            Box.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else {
+            correct = "false";
+            action = true;
+            executed = true;
+            Box.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
+    void Changed(string t) {
+        Debug.Log(gameUI.TextBox[4].GetComponent<InputField>().text + " / " + 1);
+        value = t;
+        Debug.Log(value);
+    }
 
     public string ChangeUI(string name, string title, string text, string[] temp) {
         Time.timeScale = 0f;
@@ -117,8 +179,8 @@ public class Question : MonoBehaviour {
                 CheckboxChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
             });
 
-                return correct;
-            
+            return correct;
+
             /*
             if (executed == true) {
                 return correct;
@@ -128,18 +190,21 @@ public class Question : MonoBehaviour {
             }*/
 
 
-        } else if (name == "TrueFalse") {
-            gameUI.TrueFalse[0].SetActive(true);
+        }
+        else if (name == "TrueFalse") {
+            TFS.SetActive(true);
             gameUI.TrueFalse[1].GetComponent<TMPro.TextMeshProUGUI>().text = title;
             gameUI.TrueFalse[2].GetComponent<TMPro.TextMeshProUGUI>().text = text;
-            gameUI.TrueFalse[3].GetComponent<Button>().onClick.AddListener(TaskOnClick);
-            
+            gameUI.TrueFalse[3].GetComponent<Button>().onClick.AddListener(TaskOnClickTF);
+
+
             gameUI.TrueFalse[4].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
-                CheckboxChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
+                TrueFalseChanged1(gameUI.TrueFalse[4].GetComponent<Toggle>());
             });
             gameUI.TrueFalse[5].GetComponent<Toggle>().onValueChanged.AddListener(delegate {
-                CheckboxChanged4(gameUI.Checkbox[11].GetComponent<Toggle>());
+                TrueFalseChanged2(gameUI.TrueFalse[5].GetComponent<Toggle>());
             });
+
 
             if (executed == true) {
                 return correct;
@@ -149,33 +214,34 @@ public class Question : MonoBehaviour {
             }
             return "";
         }
-        else {
-            return "";
-        }
-        /*
+        
         else if (name == "Dropdown") {
-            gameUI.Dropdown[0].SetActive(true);
+            Dropdown.SetActive(true);
             gameUI.Dropdown[1].GetComponent<TMPro.TextMeshProUGUI>().text = title;
             gameUI.Dropdown[2].GetComponent<TMPro.TextMeshProUGUI>().text = text;
             gameUI.Dropdown[3].GetComponent<Button>().onClick.AddListener(TaskOnClick);
-            /*if (executed == true) {
+            if (executed == true) {
                 return correct;
             }
             else {
-                ChangeUI(obj, name, title, text, temp);
+                //ChangeUI(obj, name, title, text, temp);
             }
+            return "";
         }
         else if (name == "TextBox") {
-            gameUI.TextBox[0].SetActive(true);
+            Box.SetActive(true);
             gameUI.TextBox[1].GetComponent<TMPro.TextMeshProUGUI>().text = title;
             gameUI.TextBox[2].GetComponent<TMPro.TextMeshProUGUI>().text = text;
-            gameUI.TextBox[3].GetComponent<Button>().onClick.AddListener(TaskOnClick);
-           /*if (executed == true) {
+            gameUI.TextBox[3].GetComponent<Button>().onClick.AddListener(TaskOnClickBox);
+            Debug.Log(gameUI.TextBox[4].GetComponent<InputField>().text+ " / "+1);
+            gameUI.TextBox[4].GetComponent<InputField>().onValueChanged.AddListener(delegate { Changed(gameUI.TextBox[4].GetComponent<InputField>().text); });
+            if (executed == true) {
                 return correct;
             }
             else {
-                ChangeUI(obj, name, title, text, temp);
+                //ChangeUI(obj, name, title, text, temp);
             }
+            return "";
         }
         else {
             /*if (executed == true) {
@@ -185,6 +251,9 @@ public class Question : MonoBehaviour {
                 ChangeUI(obj, name, title, text, temp);
             }
         }*/
+
+            return "";
+        }
     }
 
     string getTitle() {
@@ -195,8 +264,8 @@ public class Question : MonoBehaviour {
         return text;
     }
 
-    public bool submit() {
-
+    bool submit() {
         return true;
     }
+
 }

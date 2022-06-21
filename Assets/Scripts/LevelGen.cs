@@ -40,7 +40,7 @@ public class LevelGen : MonoBehaviour
 
     IEnumerator GenerateSection() {
         
-        secNum = Random.Range(0,4);
+        secNum = Random.Range(0,2);
         var o = Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
         objects.Add(o);
         zPos += 40;

@@ -14,8 +14,8 @@ public class UI_Handler : MonoBehaviour {
     void Awake() {
         Checkbox = new GameObject[15];
         TrueFalse = new GameObject[15];
-        TextBox = new GameObject[5];
-        Dropdown = new GameObject[5];
+        TextBox = new GameObject[15];
+        Dropdown = new GameObject[15];
         /*
         for (int i = 0; i < 5; i++) {
             Checkbox[i] = new GameObject();
@@ -58,6 +58,13 @@ public class UI_Handler : MonoBehaviour {
 
         TrueFalse[4] = GameObject.Find("TrueFalse/Fields/GameObject/GameObject/True");
         TrueFalse[5] = GameObject.Find("TrueFalse/Fields/GameObject/GameObject/False");
+
+        TextBox[4] = GameObject.Find("Textbox/Fields/GameObject/InputField (TMP)");
+        Dropdown[4] = GameObject.Find("Dropdown/Fields/GameObject/Dropdown (1)");
+        /*Dropdown[5] = GameObject.Find("Dropdown/Fields/GameObject/Answer A (1)/Label");
+        Dropdown[6] = GameObject.Find("Dropdown/Fields/GameObject/Answer A (2)/Label");
+        Dropdown[7] = GameObject.Find("Dropdown/Fields/GameObject/Answer A (3)/Label");
+        Dropdown[8] = GameObject.Find("Dropdown/Fields/GameObject/Answer A");*/
         /*
         Checkbox[0].SetActive(false);
         TrueFalse[0].SetActive(false);

@@ -19,7 +19,7 @@ public class GateGen : MonoBehaviour
     }
 
     public void decide() {
-        int x = Random.Range(1, 2);
+        int x = Random.Range(0, 3);
         int x1 = 0, x2 = 0;
         //Debug.Log(x);
         if (x == 1) {

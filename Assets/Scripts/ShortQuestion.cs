@@ -23,9 +23,10 @@ public class ShortQuestion : Question {
         myC.text = question;
         //myC.answer[0] = "";
         //myC.answer = answer;
-        myC.answer[0] = answers[0];
-        myC.answer[1] = answers[1];
-        myC.answer[2] = answers[2];
+
+        for (int i = 0; i < answers.Length; i++) {
+            myC.answer[i] = answers[i];
+        }
         return myC;
     }
 

@@ -18,7 +18,12 @@ public class TFQuestion : Question {
         myC.name = name;
         myC.title = parameter;
         myC.text = question;
-        myC.answer[0] = answer;
+        if (answer.Contains("F")) {
+            myC.answer[0] = ""+1;
+        }
+        else {
+            myC.answer[0] = ""+0;
+        }
         return myC;
     }
 
