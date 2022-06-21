@@ -67,6 +67,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Question:'
       objectReference: {fileID: 0}
+    - target: {fileID: 5967586062815452247, guid: eb69949a1bb44274daad742b64b1046a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967586062815452247, guid: eb69949a1bb44274daad742b64b1046a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 6585221445217399544, guid: eb69949a1bb44274daad742b64b1046a, type: 3}
       propertyPath: m_SizeDelta.x
       value: -400
@@ -86,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 6901439903674836354, guid: eb69949a1bb44274daad742b64b1046a, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901439903674836354, guid: eb69949a1bb44274daad742b64b1046a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8623878830828057415, guid: eb69949a1bb44274daad742b64b1046a, type: 3}
       propertyPath: m_Pivot.x
